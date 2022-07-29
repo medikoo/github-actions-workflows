@@ -217,7 +217,7 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: npm-v18${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
+          key: npm-v8${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
           restore-keys: npm-v8-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
