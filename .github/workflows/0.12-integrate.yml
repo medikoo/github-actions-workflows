@@ -70,8 +70,8 @@ jobs:
       - name: Unit tests
         run: npm test
 
-  linuxNode17:
-    name: "[Linux] Node.js v17: Unit tests on npm package"
+  linuxNode18:
+    name: "[Linux] Node.js v18: Unit tests on npm package"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -84,8 +84,8 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: npm-v17-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
-          restore-keys: npm-v17-${{ runner.os }}-${{ github.ref }}-
+          key: npm-v18-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
+          restore-keys: npm-v18-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
         uses: actions/setup-node@v1
@@ -330,7 +330,7 @@ jobs:
       [
         linuxNode16,
         windowsNode16,
-        linuxNode17,
+        linuxNode18,
         linuxNode14,
         linuxNode12,
         linuxNode10,
