@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          # For *:updated script purpose ensure to have complete list of PR commits
+          fetch-depth: 30
 
       - name: Retrieve last main commit (for `git diff` purposes)
         run: |
