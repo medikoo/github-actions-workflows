@@ -7,8 +7,8 @@ env:
   FORCE_COLOR: 1
 
 jobs:
-  linuxNode16:
-    name: "[Linux] Node.js v16: Lint, Formatting, Unit tests"
+  linuxNode20:
+    name: "[Linux] Node.js v20: Lint, Formatting, Unit tests"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -31,15 +31,15 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: npm-v16-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
+          key: npm-v20-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
           restore-keys: |
-            npm-v16-${{ runner.os }}-${{ github.ref }}-
-            npm-v16-${{ runner.os }}-refs/heads/main-
+            npm-v20-${{ runner.os }}-${{ github.ref }}-
+            npm-v20-${{ runner.os }}-refs/heads/main-
 
       - name: Install Node.js and npm
         uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       - name: Install dependencies
         if: steps.cacheNpm.outputs.cache-hit != 'true'
@@ -53,8 +53,8 @@ jobs:
       - name: Unit tests
         run: npm test
 
-  windowsNode16:
-    name: "[Windows] Node.js v16: Unit tests"
+  windowsNode20:
+    name: "[Windows] Node.js v20: Unit tests"
     runs-on: windows-latest
     steps:
       - name: Checkout repository
@@ -67,15 +67,15 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: npm-v16-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
+          key: npm-v20-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
           restore-keys: |
-            npm-v16-${{ runner.os }}-${{ github.ref }}-
-            npm-v16-${{ runner.os }}-refs/heads/main-
+            npm-v20-${{ runner.os }}-${{ github.ref }}-
+            npm-v20-${{ runner.os }}-refs/heads/main-
 
       - name: Install Node.js and npm
         uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       - name: Install dependencies
         if: steps.cacheNpm.outputs.cache-hit != 'true'
@@ -128,8 +128,42 @@ jobs:
           cd "package"
           npm test
 
+  linuxNode16:
+    name: "[Linux] Node.js v16: Unit tests with coverage"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Retrieve dependencies from cache
+        id: cacheNpm
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: npm-v16-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
+          restore-keys: |
+            npm-v16-${{ runner.os }}-${{ github.ref }}-
+            npm-v16-${{ runner.os }}-refs/heads/main-
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.x
+
+      - name: Install dependencies
+        if: steps.cacheNpm.outputs.cache-hit != 'true'
+        run: |
+          npm update --no-save
+          npm update --save-dev --no-save
+      - name: Unit tests
+        run: npm run coverage
+      - name: Push coverage
+        run: npx codecov
+
   linuxNode14:
-    name: "[Linux] Node.js v14: Unit tests with coverage"
+    name: "[Linux] Node.js v14: Unit tests"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -158,9 +192,7 @@ jobs:
           npm update --no-save
           npm update --save-dev --no-save
       - name: Unit tests
-        run: npm run coverage
-      - name: Push coverage
-        run: npx codecov
+        run: npm test
 
   linuxNode12:
     name: "[Linux] Node.js v12: Unit tests"
@@ -285,6 +317,8 @@ jobs:
       - name: Install dependencies
         if: steps.cacheNpm.outputs.cache-hit != 'true'
         run: |
+          # Remove husky from package.json to avoid problematic hook
+          sed '/husky": "/d' package.json > tmp && rm package.json && mv tmp package.json
           npm update --no-save
           npm update --save-dev --no-save
       - name: Unit tests
