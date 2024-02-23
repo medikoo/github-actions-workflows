@@ -28,7 +28,7 @@ jobs:
           restore-keys: npm-v16-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 16.x
 
@@ -58,7 +58,7 @@ jobs:
           restore-keys: npm-v16-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 16.x
 
@@ -88,7 +88,7 @@ jobs:
           restore-keys: npm-v18-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 17.x
 
@@ -129,7 +129,7 @@ jobs:
           restore-keys: npm-v14-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 14.x
 
@@ -161,7 +161,7 @@ jobs:
           restore-keys: npm-v12-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 12.x
 
@@ -191,7 +191,7 @@ jobs:
           restore-keys: npm-v10-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 10.x
 
@@ -221,7 +221,7 @@ jobs:
           restore-keys: npm-v8-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 8.x
 
@@ -251,7 +251,7 @@ jobs:
           restore-keys: npm-v6-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 6.x
 
@@ -281,7 +281,7 @@ jobs:
           restore-keys: npm-v4-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 4.x
 
@@ -311,7 +311,7 @@ jobs:
           restore-keys: npm-v0.12-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: "0.12"
 
@@ -341,7 +341,7 @@ jobs:
           restore-keys: npm-v0.10-${{ runner.os }}-${{ github.ref }}-
 
       - name: Install Node.js and npm
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: "0.10"
 
