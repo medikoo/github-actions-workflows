@@ -140,8 +140,7 @@ jobs:
           npm update --save-dev --no-save
       - name: Unit tests
         run: npm run coverage
-      - name: Push coverage
-        run: npx codecov
+      - uses: codecov/codecov-action@v5
 
   linuxNode14:
     name: "[Linux] Node.js v14: Unit tests"

@@ -5,8 +5,7 @@ on:
     secrets:
       USER_GITHUB_TOKEN:
         required: true
-      CODECOV_TOKEN:
-        required: true
+
 env:
   FORCE_COLOR: 1
 
@@ -141,9 +140,7 @@ jobs:
           npm update --save-dev --no-save
       - name: Unit tests
         run: npm run coverage
-      - uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - uses: codecov/codecov-action@v5
 
   linuxNode14:
     name: "[Linux] Node.js v14: Unit tests"
